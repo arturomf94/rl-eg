@@ -29,14 +29,13 @@ parameters = np.random.rand(4) * 2 - 1
 bestreward = 0
 for _ in range(10000):
     newparams = parameters + (np.random.rand(4) * 2 - 1)*noise_scaling
-    reward = 0
-    run = run_episode(env, newparams)
+    reward = run_episode(env, newparams)
     if reward > bestreward:
         bestreward = reward
         parameters = newparams
         if reward == 200:
+            print('Found reward 200 parameters')
             break
-
 
 # Run two hundred steps with best parameters
 

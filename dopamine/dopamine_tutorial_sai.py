@@ -12,6 +12,8 @@ from dopamine.colab import utils as colab_utils
 #warnings
 from absl import flags
 
+import pandas as pd
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 #where to store training logs
@@ -108,8 +110,9 @@ experimental_data = colab_utils.load_baselines(content)
 basic_data = colab_utils.read_experiment(log_path=LOG_PATH, verbose=True)
 basic_data['agent'] = 'BasicAgent'
 basic_data['run_number'] = 1
-experimental_data[GAME] = experimental_data[GAME].merge(basic_data,
-                                                        how='outer')
+# experimental_data[GAME] = experimental_data[GAME].merge(basic_data,
+#                                                         how='outer')
+experimental_data[GAME] = pd.concat([experimental_data[GAME], basic_data])
 
 # @title Plot training results.
 

@@ -95,15 +95,14 @@ print('Done training!')
 
 
 # @title Load baseline data
-content = os.path.join(BASE_PATH, 'content')
-# os.system('mkdir -p ' + content)
-os.system('mkdir -p content')
-# os.system("gsutil -q -m cp -r gs://download-dopamine-rl/preprocessed-benchmarks/* " + content)
-os.system("gsutil -q -m cp -R gs://download-dopamine-rl/preprocessed-benchmarks/* /content/")
+content = os.path.join(LOG_PATH, 'content')
+os.system('mkdir -p ' + content)
+# os.system('mkdir -p content')
+os.system("gsutil -q -m cp -r gs://download-dopamine-rl/preprocessed-benchmarks/* " + content)
+# os.system("gsutil -q -m cp -R gs://download-dopamine-rl/preprocessed-benchmarks/* /content/")
 # !gsutil -q -m cp -R gs://download-dopamine-rl/preprocessed-benchmarks/* /content/
-experimental_data = colab_utils.load_baselines('/content')
-
-import pdb; pdb.set_trace()
+# experimental_data = colab_utils.load_baselines('/content')
+experimental_data = colab_utils.load_baselines(content)
 
 # @title Load the training logs.
 basic_data = colab_utils.read_experiment(log_path=LOG_PATH, verbose=True)
